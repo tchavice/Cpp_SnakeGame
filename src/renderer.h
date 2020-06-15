@@ -7,13 +7,6 @@
 #include <SDL2/SDL_image.h>  //for background image
 #include "snake.h"
 
-class BackgroundImage {
-  public:
-    BackgroundImage();
-    //~BackgroundImage();
-    void Load(SDL_Surface *screenSurface, std::string path);
-
-};
 
 class Renderer {
  public:
@@ -23,12 +16,13 @@ class Renderer {
 
   void Render(Snake const snake, SDL_Point const &food);
   void UpdateWindowTitle(int score, int fps);
-  SDL_Surface* GetWindowSurface();  //added: getter for sdl_window surface
-
+  
  private:
   SDL_Window *sdl_window;
   SDL_Renderer *sdl_renderer;
-  BackgroundImage _background;    //added: background image class private mbr
+  SDL_Texture *background;    //added: background member, load_background method
+  SDL_Texture* load_background(const std::string path, SDL_Renderer* sdl_renderer);
+  
 
   const std::size_t screen_width;
   const std::size_t screen_height;

@@ -2,32 +2,6 @@
 #include <iostream>
 #include <string>
 
-//Added: BackgroundImage Constructor
-BackgroundImage::BackgroundImage() {
-  // initialize image: adapted from fschr/SDL2 image example
-  if( !(IMG_Init( IMG_INIT_PNG) & IMG_INIT_PNG)) {
-    std::cerr << "Error initializing SDL image :" << IMG_GetError() << "\n";
-  }
-}
-
-//Added: BackgroundImage Load method
-void BackgroundImage::Load(SDL_Surface *screenSurface, std::string path) {
-  // Obtain surface from file: adapted from fschr/SDL2 image ex
-  SDL_Surface *imgSurface = IMG_Load(path.c_str());
-  if (imgSurface == nullptr) {
-    std::cerr << "Error loading image :" << IMG_GetError() << "\n";
-  }
-  // Convert surface to screen format
-  //SDL_Surface *screenSurface = renderer->GetWindowSurface();
-  SDL_Surface *optimizedImg = SDL_ConvertSurface(imgSurface, screenSurface->format, 0);
-  if(optimizedImg == NULL) {
-    std::cerr << "Error optimizing image :" << SDL_GetError() << "\n";
-  }
-  SDL_FreeSurface(imgSurface);
-  
-  SDL_BlitSurface(optimizedImg, NULL, screenSurface, NULL);
-  
-}
 
 Renderer::Renderer(const std::size_t screen_width,
                    const std::size_t screen_height,
@@ -59,9 +33,10 @@ Renderer::Renderer(const std::size_t screen_width,
     std::cerr << "SDL_Error: " << SDL_GetError() << "\n";
   }
 
-  //Create background and load to window
-  _background.Load(GetWindowSurface(), kBackgroundPath);
-  SDL_UpdateWindowSurface(sdl_window);
+  //Added: Create background and load to window
+  if(background == NULL) {
+    background = load_background(kBackgroundPath, sdl_renderer);
+  }
 
 }
 
@@ -76,8 +51,10 @@ void Renderer::Render(Snake const snake, SDL_Point const &food) {
   block.h = screen_height / grid_height;
 
   // Clear screen
-  SDL_SetRenderDrawColor(sdl_renderer, 0x1E, 0x1E, 0x1E, 0xFF);
+  //SDL_SetRenderDrawColor(sdl_renderer, 0x1E, 0x1E, 0x1E, 0xFF); //Removed
   SDL_RenderClear(sdl_renderer);
+  // Added: copy background to window
+  SDL_RenderCopy(sdl_renderer, background, NULL, NULL);
 
   // Render food
   SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xCC, 0x00, 0xFF);
@@ -112,11 +89,21 @@ void Renderer::UpdateWindowTitle(int score, int fps) {
   SDL_SetWindowTitle(sdl_window, title.c_str());
 }
 
-//Added for background image: get SDL window surface
-SDL_Surface* Renderer::GetWindowSurface() {
-  SDL_Surface *screenSurface = SDL_GetWindowSurface(sdl_window);
-  if(screenSurface == NULL) {
-    std::cerr << "Error getting window surface :" << SDL_GetError() << "\n";
-   }
-   return screenSurface;
+//Added: load background image
+SDL_Texture* Renderer::load_background(const std::string path, SDL_Renderer* sdl_renderer) {
+  // Obtain surface from file: adapted from fschr/SDL2 image ex
+  SDL_Surface *imgSurface = IMG_Load(path.c_str());
+  if (imgSurface == nullptr) {
+    std::cerr << "Error loading image :" << IMG_GetError() << "\n";
+  }
+  // Create texture from the image to be applied to the window
+  SDL_Texture* imgTexture = SDL_CreateTextureFromSurface(sdl_renderer, imgSurface);
+  if(imgTexture == NULL) {
+    std::cerr << "Error loading texture :" << SDL_GetError() << "\n";
+  }
+  // Clean up memory
+  SDL_FreeSurface(imgSurface);
+  
+  return imgTexture;
+  
 }
