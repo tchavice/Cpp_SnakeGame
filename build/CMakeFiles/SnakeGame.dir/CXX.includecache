@@ -6,16 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/talya/Documents/C++_Course/Cpp_Final_Project/src/controller.cpp
-controller.h
-/home/talya/Documents/C++_Course/Cpp_Final_Project/src/controller.h
-iostream
--
-SDL.h
-/home/talya/Documents/C++_Course/Cpp_Final_Project/src/SDL.h
-snake.h
-/home/talya/Documents/C++_Course/Cpp_Final_Project/src/snake.h
-
 /home/talya/Documents/C++_Course/Cpp_Final_Project/src/controller.h
 snake.h
 /home/talya/Documents/C++_Course/Cpp_Final_Project/src/snake.h
@@ -61,18 +51,14 @@ string
 /home/talya/Documents/C++_Course/Cpp_Final_Project/src/renderer.h
 vector
 -
+string
+-
 SDL.h
 /home/talya/Documents/C++_Course/Cpp_Final_Project/src/SDL.h
+SDL2/SDL_image.h
+-
 snake.h
 /home/talya/Documents/C++_Course/Cpp_Final_Project/src/snake.h
-
-/home/talya/Documents/C++_Course/Cpp_Final_Project/src/snake.cpp
-snake.h
-/home/talya/Documents/C++_Course/Cpp_Final_Project/src/snake.h
-cmath
--
-iostream
--
 
 /home/talya/Documents/C++_Course/Cpp_Final_Project/src/snake.h
 vector
