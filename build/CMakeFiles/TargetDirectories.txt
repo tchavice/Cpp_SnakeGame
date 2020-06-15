@@ -1,0 +1,3 @@
+/home/talya/Documents/C++_Course/Cpp_Final_Project/build/CMakeFiles/rebuild_cache.dir
+/home/talya/Documents/C++_Course/Cpp_Final_Project/build/CMakeFiles/edit_cache.dir
+/home/talya/Documents/C++_Course/Cpp_Final_Project/build/CMakeFiles/SnakeGame.dir
