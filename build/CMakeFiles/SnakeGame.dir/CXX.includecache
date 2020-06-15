@@ -15,11 +15,15 @@ game.h
 /home/talya/Documents/C++_Course/Cpp_Final_Project/src/game.h
 iostream
 -
+thread
+-
 SDL.h
 /home/talya/Documents/C++_Course/Cpp_Final_Project/src/SDL.h
 
 /home/talya/Documents/C++_Course/Cpp_Final_Project/src/game.h
 random
+-
+memory
 -
 SDL.h
 /home/talya/Documents/C++_Course/Cpp_Final_Project/src/SDL.h
@@ -29,24 +33,6 @@ renderer.h
 /home/talya/Documents/C++_Course/Cpp_Final_Project/src/renderer.h
 snake.h
 /home/talya/Documents/C++_Course/Cpp_Final_Project/src/snake.h
-
-/home/talya/Documents/C++_Course/Cpp_Final_Project/src/main.cpp
-iostream
--
-controller.h
-/home/talya/Documents/C++_Course/Cpp_Final_Project/src/controller.h
-game.h
-/home/talya/Documents/C++_Course/Cpp_Final_Project/src/game.h
-renderer.h
-/home/talya/Documents/C++_Course/Cpp_Final_Project/src/renderer.h
-
-/home/talya/Documents/C++_Course/Cpp_Final_Project/src/renderer.cpp
-renderer.h
-/home/talya/Documents/C++_Course/Cpp_Final_Project/src/renderer.h
-iostream
--
-string
--
 
 /home/talya/Documents/C++_Course/Cpp_Final_Project/src/renderer.h
 vector

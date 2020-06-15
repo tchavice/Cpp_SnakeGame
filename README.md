@@ -6,9 +6,10 @@ This is an enhanced version of the starter repo provided for the capstone projec
 
 ## Rubric Items
 ### Loops Functions and IO
-| Criteria | How is it satisfied | Where |
-| The project reads data from a file and process the data, or the program writes data to a file. | The updated game reads in a background image using the SDL image library and applies it to the background of the game | renderer.cpp # TODO |
-| The project accepts user input and processes the input. | The startup menu launches the game based on user input | TODO |
+|Criteria| How is it satisfied | Where |
+| --- | --- | ---|
+|The project reads data from a file and process the data, or the program writes data to a file.| The updated game reads in a background image using the SDL image library and applies it to the background of the game | renderer.cpp # TODO |
+|The project accepts user input and processes the input.| The startup menu launches the game based on user input | TODO |
 
 ### Object Oriented Programming
 

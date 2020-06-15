@@ -11,12 +11,18 @@ int main() {
   constexpr std::size_t kGridWidth{32};
   constexpr std::size_t kGridHeight{32};
 
+  Game game(kGridWidth, kGridHeight);
+  game.Startup();   //Added startup menu
   Renderer renderer(kScreenWidth, kScreenHeight, kGridWidth, kGridHeight);
   Controller controller;
-  Game game(kGridWidth, kGridHeight);
   game.Run(controller, renderer, kMsPerFrame);
+
+  // Print personalized game summary
   std::cout << "Game has terminated successfully!\n";
-  std::cout << "Score: " << game.GetScore() << "\n";
-  std::cout << "Size: " << game.GetSize() << "\n";
+  std::cout << "Congratulations " << game.GetName() << "!\n";
+  std::cout << "You scored " << game.GetScore() << " on level " << game.GetLevel() << "\n";
+  std::cout << "Your snake was " << game.GetSize() << " feet long\n";
+  //std::cout << "Score: " << game.GetScore() << "\n";
+  //std::cout << "Size: " << game.GetSize() << "\n";
   return 0;
 }

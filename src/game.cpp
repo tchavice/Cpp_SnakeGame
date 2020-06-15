@@ -1,13 +1,64 @@
 #include "game.h"
 #include <iostream>
+#include <thread>
 #include "SDL.h"
 
 Game::Game(std::size_t grid_width, std::size_t grid_height)
     : snake(grid_width, grid_height),
       engine(dev()),
       random_w(0, static_cast<int>(grid_width)),
-      random_h(0, static_cast<int>(grid_height)) {
+      random_h(0, static_cast<int>(grid_height)),
+      player(std::make_unique<Player>()) {
   PlaceFood();
+}
+
+void Game::PlayerMenu() {
+  bool repeat = true;
+  std::string name;
+  char level;
+  char start;
+
+  std::cout << "Enter name: ";
+  std::cin >> name;
+  std::cout << "Welcome " << name << " to the snake game!" << std::endl;
+  while(repeat) {
+    repeat = false;
+    std::cout << "The game has three levels.  Level 1 is the easiest, 3 is the hardest\n";
+    std::cout << "Enter 1 2 or 3 to select your level: ";
+    std::cin >> level;
+    std::cout << "You selected level " << level << std::endl;
+    switch(level) {
+      case '1':
+        std::cout << "This shouldn't be too hard! \n";
+        break;
+      case '2':
+        std::cout << "This will be a little harder...\n";
+        break;
+      case '3':
+        std::cout << "Buckle up!\n";
+        break;
+      default:
+        std::cout << "Invalid level, try again\n";
+        repeat = true;
+        continue;
+    }
+  }
+  while(true) {
+    std::cout << "To start, press s (for snake, of course) \n";
+    std::cin >> start;
+    if (start == 's') break;
+  }
+
+  player->SetName(name);
+  player->SetLevel(level);
+
+}
+
+//Added startup function to handle threads for menu, 
+void Game::Startup() {
+  std::thread t = std::thread(&Game::PlayerMenu, this);
+  t.join();
+  
 }
 
 void Game::Run(Controller const &controller, Renderer &renderer,
@@ -85,3 +136,5 @@ void Game::Update() {
 
 int Game::GetScore() const { return score; }
 int Game::GetSize() const { return snake.size; }
+char Game::GetLevel() {return player->GetLevel(); }
+std::string Game::GetName() {return player->GetName(); }

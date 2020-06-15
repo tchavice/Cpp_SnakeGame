@@ -2,11 +2,14 @@
 #define GAME_H
 
 #include <random>
+#include <memory>
 #include "SDL.h"
 #include "controller.h"
 #include "renderer.h"
 #include "snake.h"
 
+//Forward declarations
+class Player;
 class Game {
  public:
   Game(std::size_t grid_width, std::size_t grid_height);
@@ -14,10 +17,15 @@ class Game {
            std::size_t target_frame_duration);
   int GetScore() const;
   int GetSize() const;
+  std::string GetName();
+  char GetLevel();
+  void Startup();
+  void PlayerMenu();
 
  private:
   Snake snake;
   SDL_Point food;
+  std::unique_ptr<Player> player; //Added: player member
 
   std::random_device dev;
   std::mt19937 engine;
@@ -28,6 +36,19 @@ class Game {
 
   void PlaceFood();
   void Update();
+};
+
+//Create Player class to store player information
+class Player {
+  public: 
+    std::string GetName() {return _name; }
+    void SetName(std::string name) {_name = name; }
+    char GetLevel() {return _level; }
+    void SetLevel(char level) {_level = level; }
+  private:
+    std::string _name;
+    int _score;
+    char _level;
 };
 
 #endif
