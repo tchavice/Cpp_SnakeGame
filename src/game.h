@@ -19,22 +19,26 @@ class Game {
   int GetSize() const;
   std::string GetName();
   char GetLevel();
+  bool GetAlive();
   void Startup();
   void PlayerMenu();
 
  private:
   Snake snake;
   SDL_Point food;
+  SDL_Point poison;   //Added: poison member for level 2/3
   std::unique_ptr<Player> player; //Added: player member
 
   std::random_device dev;
   std::mt19937 engine;
   std::uniform_int_distribution<int> random_w;
   std::uniform_int_distribution<int> random_h;
+  std::uniform_int_distribution<int> random_interval;
 
   int score{0};
 
   void PlaceFood();
+  void PlacePoison();
   void Update();
 };
 

@@ -54,6 +54,17 @@ void Snake::UpdateBody(SDL_Point &current_head_cell, SDL_Point &prev_head_cell) 
     growing = false;
     size++;
   }
+  //Added: for level 2 Remove one block from vector.  If size is 1, die
+  if(shrinking)  {
+    std::cout <<"Your snake was " << size << " long\n";
+    if(size == 1) alive = false;
+    else {
+      body.erase(body.begin());
+    }
+    shrinking = false;
+    size--;
+    std::cout << "Your snake is now " << size << " long\n";
+  }
 
   // Check if the snake has died.
   for (auto const &item : body) {
@@ -61,9 +72,16 @@ void Snake::UpdateBody(SDL_Point &current_head_cell, SDL_Point &prev_head_cell) 
       alive = false;
     }
   }
+  //if(!alive) std::cout << "Your snake died - Oh no!\n";
 }
 
 void Snake::GrowBody() { growing = true; }
+
+//Added shrink body method for level 2
+void Snake::ShrinkBody() { 
+  shrinking = true; 
+  std::cout << "Poison!!  Your snake is shrinking\n";
+  }
 
 // Inefficient method to check if cell is occupied by snake.
 bool Snake::SnakeCell(int x, int y) {

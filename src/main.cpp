@@ -18,8 +18,11 @@ int main() {
   game.Run(controller, renderer, kMsPerFrame);
 
   // Print personalized game summary
-  std::cout << "Game has terminated successfully!\n";
-  std::cout << "Congratulations " << game.GetName() << "!\n";
+  //std::cout << "Game has terminated successfully!\n";
+  if(game.GetAlive()){
+    std::cout << "Congratulations " << game.GetName() << " your snake lived!\n";
+  }
+  else std::cout << "RIP snake of " << game.GetName() << "\n";
   std::cout << "You scored " << game.GetScore() << " on level " << game.GetLevel() << "\n";
   std::cout << "Your snake was " << game.GetSize() << " feet long\n";
   //std::cout << "Score: " << game.GetScore() << "\n";
