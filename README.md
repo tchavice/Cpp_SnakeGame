@@ -8,10 +8,28 @@ This is an enhanced version of the starter repo provided for the capstone projec
 ### Loops Functions and IO
 |Criteria| How is it satisfied | Where |
 | --- | --- | ---|
+|The project demonstrates an understanding of C++ functions and control structures.| The game additions use functions and various control flow structures.| ex: game.cpp TODO|
 |The project reads data from a file and process the data, or the program writes data to a file.| The updated game reads in a background image using the SDL image library and applies it to the background of the game | renderer.cpp # TODO |
 |The project accepts user input and processes the input.| The startup menu launches the game based on user input | TODO |
 
 ### Object Oriented Programming
+|Criteria| How is it satisfied | Where |
+| --- | --- | ---|
+|The project uses Object Oriented Programming techniques.| New classes are implemented, and the functionality of existing classes is expanded| game.h Player class|
+|Classes use appropriate access specifiers for class members.| Classes use access specifiers | game.h Player class|
+|Classes abstract implementation details from their interfaces.| Classes are documented through comments or function names | eg game.h Player class|
+|Classes encapsulate behavior.| Class members are private, accessed via public functions| game.h Player class|
+
+
+### Memory Management
+|Criteria| How is it satisfied | Where |
+| --- | --- | ---|
+|The project uses smart pointers instead of raw pointers.| Game class includes smart pointer to player class| game.h #28|
+
+### Concurrency
+|Criteria| How is it satisfied | Where |
+| --- | --- | ---|
+|The project uses multithreading.| Startup function uses threads to manage player menu and other functions | game.cpp TODO|
 
 ## Dependencies for Running Locally
 * cmake >= 3.7
